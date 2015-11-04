@@ -1,16 +1,17 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import route from './routes'
+
 require('./style.scss');
 
-var Vue = require('vue');
+Vue.use(VueRouter)
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    view: 'home'
-  },
-  components: {
-    // define the main pages as async components.
-    'home': function (resolve) {
-      require(['./views/home'], resolve)
-    }
-  }
-});
+const router = new VueRouter({
+  hashbang: true,
+  history: false
+})
+route(router)
+
+const App = Vue.extend(require('./app.vue'))
+
+router.start(App, '#app')

@@ -10,11 +10,25 @@ module.exports = {
     publicPath : '/'
   },
   module: {
-    loaders: [
-      { test: /\.scss$/, loader: 'style!css!sass' },
-      { test: /\.vue$/, loader: 'vue' },
-      { test: /\.html$/, loader: 'html' }
-    ]
+      loaders: [
+          {
+              test   : /\.vue$/,
+              loader : 'vue'
+          },
+          {
+              test    : /\.js$/,
+              exclude : /node_modules|vue\/src/,
+              loader  : 'babel?presets[]=es2015'
+          },
+          {
+              test   : /\.scss$/,
+              loader : 'style!css!sass'
+          },
+          {
+              test   : /\.html$/,
+              loader : 'html'
+          }
+      ]
   },
   devtool: '#source-map'
 }
